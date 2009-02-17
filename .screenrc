@@ -1,0 +1,116 @@
+
+##    Explanation of hardstatus line    ##
+
+# Ignore the ' marks if you use these examples for yourself
+
+# Note that if you want to use the color brown under konsole
+# You actually use bright yellow (%{Y}). 
+
+# Note the embeded space after the colon, I feel 
+#  it just looks nicer with a blank between the
+#  text and console edge:
+#   '%{=b}%{G} Screen(s): '
+
+# This prints the window listing in blue:
+#   '%{b}%w'
+
+# This right-aligns what follows:
+#   '%='
+
+# This displays the time (hours and minutes) in 12hr format 
+# and adds an AM/PM flag, in bold green:
+#   '%{G}%C%A'
+
+# This displays the day of the week:
+#   '%D'
+
+#This displays the date in Mon/day/year format:
+# and again I embeded a space to give me one space
+# between the text and console edge:
+#  '%M/%d/%Y '
+
+# The resulting command give you a status line that 
+#  looks like this: 
+#   | Screen(s): 0* bash           5:30PM  Fri, Jun/25/2004 |
+#  (The pipes indicate the edges of the xterm/console).
+
+# Green text, time, and date; windows in blue:
+hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w %=%{kG}%C%A  %D, %M/%d/%Y "
+
+# My awesome hardstatus d-:
+#hardstatus alwayslastline "%{=b kW}[ %{= Y}$USER @ %H %{b W}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{b W}][%{= Y} %l %{b W}][%{= Y} %d/%m %{Y}%c %{b W}]"
+
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
+
+##    Keybindings    ##
+
+# bind F7  to detach screen session from this terminal
+# bind F8  to kill current screen window.
+# bind F9  to create a new screen
+# bind F10 to rename current screen window
+# bind F11 to move to previous window
+# bind F12 to move to next window
+bindkey -k k7 detach
+bindkey -k k8 kill
+bindkey -k k9 screen
+bindkey -k k; title
+bindkey -k F1 prev
+bindkey -k F2 next
+
+
+# bind F1-F6 to screens # 0-5:
+bindkey -k k1 select 0
+bindkey "\033OP" select 0
+bindkey -k k2 select 1
+bindkey "\033OQ" select 1
+bindkey -k k3 select 2
+bindkey "\033OR" select 2
+bindkey -k k4 select 3
+bindkey "\033OS" select 3
+bindkey -k k5 select 4
+bindkey "\033[15~" select 4
+bindkey -k k6 select 5
+bindkey "\033[17~" select 5
+
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
+
+bind j focus down
+bind k focus up
+bind t focus top
+bind b focus bottom
+
+autodetach		on
+startup_message	off
+
+defscrollback	10000
+
+activity "%c activity -> %n%f %t"
+bell "%c bell -> %n%f %t^G"
+vbell_msg " *beep* "
+#caption always " %m%d %c |  %w"
+# detach messages
+pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."  
+
+
+
+# UTF-8 By Default
+#defutf8 on
+#utf8 on on
+
+# 8-16 Color Support
+termcap  xterm AF=\E[3%dm
+terminfo xterm AF=\E[3%p1%dm
+termcap  xterm AB=\E[4%dm
+terminfo xterm AB=\E[4%p1%dm
+
+# 256 Color Support
+terminfo xterm Co=256
+termcap  xterm Co=256
+termcap  xterm AF=\E[38;5;%dm
+terminfo xterm AF=\E[38;5;%p1%dm
+termcap  xterm AB=\E[48;5;%dm
+terminfo xterm AB=\E[48;5;%p1%dm  
