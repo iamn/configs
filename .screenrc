@@ -35,7 +35,12 @@
 #  (The pipes indicate the edges of the xterm/console).
 
 # Green text, time, and date; windows in blue:
-hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w %=%{kG}%C%A  %D, %M/%d/%Y "
+# BERLIOZ: hardstatus alwayslastline "%{=b}%{G} Screen(s): %{b}%w %=%{kG}%C%A  %D, %M/%d/%Y "
+# hardstatus alwayslastline "%{=b}%{G} Screen: %{b}%w %=%{kG}%c %D, %M/%d/%Y "
+
+# Nikita, my version:
+# hardstatus alwayslastline "%{=b kW}%{= Y}%H: %l %{b W} %= %{=b}%{G} Screen: %{b}%w %=%{kG}%c %D, %M/%d "
+hardstatus alwayslastline "%{=b kW}%{= Y}%H: %l %{b W} %= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{kG}%c %D, %M/%d "
 
 # My awesome hardstatus d-:
 #hardstatus alwayslastline "%{=b kW}[ %{= Y}$USER @ %H %{b W}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{b W}][%{= Y} %l %{b W}][%{= Y} %d/%m %{Y}%c %{b W}]"
@@ -75,18 +80,72 @@ bindkey "\033[15~" select 4
 bindkey -k k6 select 5
 bindkey "\033[17~" select 5
 
+# Bind Control-PageDown to 'next', Control-PageUp to 'prev'
+# to navigate between windows
+bindkey ^[[5;5~ prev
+bindkey ^[[6;5~ next
+
+# Bind arrow keys Control-Down to 'next', Control-Up to 'prev'
+# to navigate between windows
+bindkey ^[[1;5A prev
+bindkey ^[[1;5B next
+
 
 # =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
 
-bind j focus down
-bind k focus up
-bind t focus top
-bind b focus bottom
+# I love screen, but hate using the C-a escape sequence because I really dislike
+# using the control key so much (I am a VIM user, can you tell?). Therefore, I
+# remap the escape to use the backtick "`" instead. So everytime the screen
+# documentation says C-a, you use the backtick instead. When I really need a
+# backtick I just hit it twice. This works well since I really only use the
+# backtick for scripting. To do this just add this line to your ~/.screenrc
+# file:
+##escape ``
+
+# If you want to have the backtick toggle between the two most recent windows as
+# C-a C-a would, you should instead have something similar to the following in
+# your ~/.screenrc:
+escape `e
+
+# This will bind the backtick character to ` e and allow ` ` to toggle windows.
+# Note that this will clobber whatever ` e was previously bound to. 'e' is
+# chosen here as it is not used by default.
+# 
+# Please note that using the backtick can cause problems with mouse-scrolling,
+# as the wheel's escape code can have a backtick in it.
+# 
+# Serious programmers may find it quite inconvenient to use the backtick, so
+# feel free to experiment with other characters or simply use the default
+# setting. 
+
+
+
+bind 'j' focus down
+bind 'k' focus up
+bind 't' focus top
+bind 'b' focus bottom
+
+# I also like to use C-j l to get a window list instead of C-j ":
+bind 'l' windowlist -b
+bind 's' split
+bind 'S' echo 'Hello, I am bored.'
+
 
 autodetach		on
 startup_message	off
 
 defscrollback	10000
+
+
+# Colorize the "messages" and "text marking":
+# Example:  Blue bg, white fg
+# sorendition gK
+# sorendition 10 99 # default, blue highlighting of active, black background, white text
+# sorendition 02 34  # yellow on blue
+# sorendition 02 40 # green  on black
+# sorendition 02 34 # yellow on blue
+# sorendition    rw # red    on white
+# sorendition    kG # black  on bold green
 
 activity "%c activity -> %n%f %t"
 bell "%c bell -> %n%f %t^G"
@@ -114,3 +173,13 @@ termcap  xterm AF=\E[38;5;%dm
 terminfo xterm AF=\E[38;5;%p1%dm
 termcap  xterm AB=\E[48;5;%dm
 terminfo xterm AB=\E[48;5;%p1%dm  
+
+# tell screen that you term can scroll
+termcapinfo xterm ti@:te@
+
+
+
+# 256 color xterm
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce "on"
