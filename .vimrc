@@ -190,7 +190,7 @@ set diffopt=filler,iwhite
 
 
 au BufNewFile,BufRead  svn-commit.* setf svn set tw=0
-au BufNewFile,BufRead  svn-commit.* no cindent no ai
+au BufNewFile,BufRead  svn-commit.* setlocal nocindent noai
 
 au BufNewFile,BufRead  *.tex 		setlocal nocindent noai
 
@@ -216,3 +216,9 @@ let g:explHideFiles='^\.,.*\.class$,.*\.swp$,.*\.pyc$,.*\.swo$,\.DS_Store$'
 "Hide the help thing..
 let g:explDetailedHelp=0
 
+"As of version 28 of <syntax/tex.vim>, syntax-based folding of parts, chapters,
+"sections, subsections, etc are supported.  Put >
+	"let g:tex_fold_enabled=1
+"in your <.vimrc>, and :set fdm=syntax.  I suggest doing the latter via a
+"modeline at the end of your LaTeX file: >
+"	% vim: fdm=syntax

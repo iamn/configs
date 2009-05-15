@@ -5,9 +5,12 @@
 #TERM=screen
 #COLORTERM=yes
 #TERM=xterm-256color
+
+
 EDITOR=vim
 PAGER=less
 FIGNORE='.o:.out:~'
+
 #DISPLAY=:0.0
 #DISPLAY=$REMOTEHOST:0.0
 #DISPLAY=128.208.15.7:0.0
@@ -30,8 +33,11 @@ if echo hello|grep --color=auto l >/dev/null 2>&1; then
   export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 fi
 
-#PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
-PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/texlive/2007/bin/powerpc-darwin:/Applications/MATLAB_R2007b/bin/:~/bin:/Applications/Vim.app/Contents/MacOS/
+path=( /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin )	# basic dirs
+path=( $path ~/bin )													# personal bin 
+path=( $path /usr/local/texlive/2008/bin/universal-darwin )				# TeXLive 2008
+path=( $path /Applications/MATLAB_R2007b/bin/ )							# matlab
+path=( $path /Applications/Vim.app/Contents/MacOS/ )					# macvim
 
 export HISTFILE=~/.zsh/history
 export HISTSIZE=3000
@@ -40,6 +46,9 @@ export SAVEHIST=3000
 # umask 022
 #export TERM EDITOR PAGER CVSROOT FIGNORE DISPLAY LS_COLORS COLORTERM PATH
 export TERM EDITOR PAGER CVSROOT FIGNORE DISPLAY LS_COLORS PATH
+
+
+
 # -----------------------------------------------
 # Set up the prompt and window title
 # -----------------------------------------------
@@ -104,7 +113,7 @@ autoload colors
 
 # GNU Colors 需要/etc/DIR_COLORS文件 否则自动补全时候选菜单中的选项不能彩色显示
 [ -f /etc/DIR_COLORS ] && eval $(dircolors -b /etc/DIR_COLORS)
-export ZLSCOLORS="${LS_COLORS}"
+#export ZLSCOLORS="${LS_COLORS}"
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 #zstyle ':completion:*' list-colors no=00 fi=00 di=01\;34 pi=33 so=01\;35 bd=00\;35 cd=00\;34 or=00\;41 mi=00\;45 ex=01\;32
@@ -197,12 +206,12 @@ zstyle ':completion:*:my-accounts' users-hosts $my_accounts
 
 
 
-# add the hostnames from ~/.ssh/known_hosts
-local _myhosts
-if [[ -f $HOME/.ssh/known_hosts ]]; then
-	_myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
-	zstyle ':completion:*' hosts $_myhosts
-fi
+#### add the hostnames from ~/.ssh/known_hosts
+###local _myhosts
+###if [[ -f $HOME/.ssh/known_hosts ]]; then
+###	_myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
+###	zstyle ':completion:*' hosts $_myhosts
+###fi
 
 # complete only dirs (or symlinks to dirs in some cases) for certain commands
 compctl -g '*(/)' rmdir dircmp
