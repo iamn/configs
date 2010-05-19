@@ -25,19 +25,22 @@ if [[ -n $SSH_CLIENT ]] {
 
 
 ################## COLORISE
-export LS_COLORS='no=00:fi=00:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.mpg=01;35:*.mpeg=01;35:*.avi=01;35:*.fli=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.ogg=01;35:*.mp3=01;35:*.wav=01;35:';
+# GNU Colors 需要/etc/DIR_COLORS文件 否则自动补全时候选菜单中的选项不能彩色显示
+[ -f ~/.dircolors ] && eval $(dircolors ~/.dircolors)
 
-#Quick-and-Dirty: grep --color. 1;32 is green, default is red; see the ansimodes command above or remove the GREP_COLOR part. A better way to do it is to add this to your ~/.bashrc (or as shown in the titlebar section below):
+
+#Quick-and-Dirty: grep --color. 1;32 is green, 1;36 is cyan default is red; see the ansimodes command above or remove the GREP_COLOR part. A better way to do it is to add this to your ~/.bashrc (or as shown in the titlebar section below):
 
 if echo hello|grep --color=auto l >/dev/null 2>&1; then
-  export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+  export GREP_OPTIONS='--color=auto' GREP_COLOR='1;36'
 fi
 
 path=( /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin )	# basic dirs
 path=( $path ~/bin )													# personal bin 
-path=( $path /usr/local/texlive/2008/bin/universal-darwin )				# TeXLive 2008
+path=( $path /usr/local/texlive/2009/bin/universal-darwin )				# TeXLive 2009
 path=( $path /Applications/MATLAB_R2007b/bin/ )							# matlab
 path=( $path /Applications/Vim.app/Contents/MacOS/ )					# macvim
+path=( $path /opt/local/bin /opt/local/sbin )							# DarwinPorts
 
 export HISTFILE=~/.zsh/history
 export HISTSIZE=3000
@@ -110,10 +113,6 @@ autoload zmv
 # from http://zshwiki.org/home/examples/compsys/colors
 autoload colors
 
-
-# GNU Colors 需要/etc/DIR_COLORS文件 否则自动补全时候选菜单中的选项不能彩色显示
-[ -f /etc/DIR_COLORS ] && eval $(dircolors -b /etc/DIR_COLORS)
-#export ZLSCOLORS="${LS_COLORS}"
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 #zstyle ':completion:*' list-colors no=00 fi=00 di=01\;34 pi=33 so=01\;35 bd=00\;35 cd=00\;34 or=00\;41 mi=00\;45 ex=01\;32
@@ -399,7 +398,6 @@ bindkey "[4~" end-of-line
 # Lab-specific variables
 # -----------------------------------------------
 source ~/.zsh/xgrid.zsh
-source ~/.zsh/fink.sh
 
 #source ~/.zsh/hmpv_setup.zsh
 
