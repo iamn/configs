@@ -1,50 +1,71 @@
 # -----------------------------------------------
 # Shell Aliases
 # -----------------------------------------------
+#
 
-
-## for administration
-alias yum='sudo yum'
-
-alias mountBleed='/sbin/mount.cifs //pallada/bleed ~/mnt/windows/bleed -o uid=imennov,gid=icsl,file_mode=0600,dir_mode=0755'
+OS=${OSTYPE%%[0-9.]*}
+OSVERSION=${OSTYPE#$OS}
 
 ## Command Aliases
 alias r='screen -R'
+alias sls='screen -ls'
+
 alias vi='vim'
 
-# For Mac OS X's fink GNU version of LS
-if [[ -f /sw/bin/ls ]]; then
-	alias ls='/sw/bin/ls -lc --color=auto --no-group --human-readable --file-type'
-	alias la='/sw/bin/ls -lc --color=auto --almost-all --no-group --human-readable --file-type'
-else
-	# GNU UNIX:
-	#alias ls='ls --color=auto -F -p'
-	#alias la='ls -lAF --color=auto'
 
-	# Darwin, OSX:
-	alias ls='ls -lc -G -h'		# os x (NSI: builtin)
+
+if [[ $OS == "darwin" ]]; then
+
+
+	if [[ -f /opt/local/bin/ls ]]; then
+
+		# For Mac OS X's fink GNU version of LS
+		alias ls='/opt/local/bin/ls -lc --color=auto 			   --no-group --human-readable --file-type'
+		alias la='/opt/local/bin/ls -lc --color=auto --almost-all --no-group --human-readable --file-type'
+
+	else 
+		# Darwin, OSX:
+		alias ls='ls -lc -G -h -F'		# os x (NSI: builtin)
+		alias la='ls -lAF'
+
+	fi
+
+else
+
+	# GNU UNIX:		(== > $OS== "linux")
+	alias ls='ls --color=auto -F -p'
+	alias la='ls -lAF --color=auto'
+
 
 fi
 
 
 alias matlab='matlab -nodesktop -nosplash'
 
-alias sls='screen -ls'
 alias cdw='cd ~/work/Source\ Code'
+
 alias e='smartextract'
 alias o='open'
 
 alias less='less -r'
 alias tree='tree -C -A --dirsfirst --noreport -s'
 
-alias du='du -h'
 alias xterm='xterm -fn 9x15 -bg black -fg goldenrod1'
 
+alias du='du -h'
 alias mv='mv -i'
 alias cp='cp -i'
 alias rm='rm -i'
 
+
+
+
+#----------------------------------------------------------------------------------------------
+#																			ZSH-specific
+#----------------------------------------------------------------------------------------------
 alias mmv='noglob zmv -W'
+alias find='noglob find'
+
 # use as  
 #	find . -depth | ccp ~/mnt/hippo
 alias ccp='cpio --pass-through --preserve-modification-time --make-directories
@@ -53,11 +74,12 @@ alias ccp='cpio --pass-through --preserve-modification-time --make-directories
 alias cdp=pushd
 
 
-alias find='noglob find'
 
 
 
+#----------------------------------------------------------------------------------------------
 ## Pipe Aliases (Global)
+#----------------------------------------------------------------------------------------------
 alias -g L='|less'
 alias -g G='|grep'
 alias -g T='|tail'
@@ -70,10 +92,23 @@ alias -g S='|sort'
 # UPenn
 alias srvr='ssh user@server.example.com'
 
+#----------------------------------------------------------------------------------------------
 ## Special Root Aliases
+#----------------------------------------------------------------------------------------------
 [ $UID = 0 ] && \
 	alias m='make' && \
 	alias mi='make install' && \
 	alias rm='rm -i' && \
 	alias mv='mv -i' && \
 	alias cp='cp -i'
+
+
+
+#----------------------------------------------------------------------------------------------
+#															OBSOLETE, FROM OLD MACHINES/ACCOUNTS
+#----------------------------------------------------------------------------------------------
+#
+#alias yum='sudo yum'
+
+#alias mountBleed='/sbin/mount.cifs //pallada/bleed ~/mnt/windows/bleed -o uid=imennov,gid=icsl,file_mode=0600,dir_mode=0755'
+
