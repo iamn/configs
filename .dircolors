@@ -59,25 +59,34 @@ TERM xterm-debian
 # 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
 # Background color codes:
 # 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+
+
 #NORMAL 00 # no color code at all
 #FILE 00 # regular file: use no color at all
 RESET 0 # reset to "normal" color
-DIR 04;37 # directory
-LINK 01;36 # symbolic link. (If you set this to 'target' instead of a
- # numerical value, the color is as for the file pointed to.)
-MULTIHARDLINK 00 # regular file with more than one link
-FIFO 40;33 # pipe
+
+DIR 01;37 						# directory
+STICKY_OTHER_WRITABLE 30;42 	# dir that is sticky and other-writable (+t,o+w)
+OTHER_WRITABLE 04;37 			# dir that is other-writable (o+w) and not sticky
+STICKY 37;44 					# dir with the sticky bit set (+t) and not other-writable
+
+
+
+
+LINK 01;36 			# symbolic link. (If you set this to 'target' instead of a numerical value, the color is as for the file pointed to.)
+MULTIHARDLINK 00 	# regular file with more than one link
+FIFO 40;33 			# pipe
 SOCK 01;35 # socket
 DOOR 01;35 # door
 BLK 40;33;01 # block device driver
 CHR 40;33;01 # character device driver
+
 ORPHAN 40;31;01 # symlink to nonexistent file, or non-stat'able file
+
 SETUID 37;41 # file that is setuid (u+s)
 SETGID 30;43 # file that is setgid (g+s)
 CAPABILITY 30;41 # file with capability
-STICKY_OTHER_WRITABLE 30;42 # dir that is sticky and other-writable (+t,o+w)
-OTHER_WRITABLE 34;42 # dir that is other-writable (o+w) and not sticky
-STICKY 37;44 # dir with the sticky bit set (+t) and not other-writable
+
 # This is for files with execute permission:
 EXEC 01;32
 # List any file extensions like '.gz' or '.tar' that you would like ls
@@ -93,7 +102,7 @@ EXEC 01;32
 # executable bit actually set.
 #.sh 01;32
 #.csh 01;32
- # archives or compressed (bright red)
+							# archives or compressed (bright red)
 .tar 01;31
 .tgz 01;31
 .arj 01;31
@@ -123,7 +132,7 @@ EXEC 01;32
 .cpio 01;31
 .7z 01;31
 .rz 01;31
-# image formats
+							# image formats
 .jpg 01;35
 .jpeg 01;35
 .gif 01;35
@@ -173,7 +182,7 @@ EXEC 01;32
 .anx 01;35
 .ogv 01;35
 .ogx 01;35
-# audio formats
+						# audio formats
 .aac 00;36
 .au 00;36
 .flac 00;36
@@ -185,7 +194,7 @@ EXEC 01;32
 .ogg 00;36
 .ra 00;36
 .wav 00;36
-# http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions
+						# http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions
 .axa 00;36
 .oga 00;36
 .spx 00;36
