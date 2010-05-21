@@ -26,7 +26,7 @@ if [[ -n $SSH_CLIENT ]] {
 
 ################## COLORISE
 # GNU Colors 需要/etc/DIR_COLORS文件 否则自动补全时候选菜单中的选项不能彩色显示
-[ -f ~/.dircolors ] && eval $(dircolors ~/.dircolors)
+[ -f ~/.dircolors ] && [ -f /opt/local/bin/dircolors ] && eval $(/opt/local/bin/dircolors ~/.dircolors) 
 
 
 #Quick-and-Dirty: grep --color. 1;32 is green, 1;36 is cyan default is red; see the ansimodes command above or remove the GREP_COLOR part. A better way to do it is to add this to your ~/.bashrc (or as shown in the titlebar section below):
