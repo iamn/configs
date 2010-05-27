@@ -33,8 +33,8 @@ if [[ $OS == "darwin" ]]; then
 else
 
 	# GNU UNIX:		(== > $OS== "linux")
-	alias ls='ls --color=auto -F -p'
-	alias la='ls -lAF --color=auto'
+	alias ls='ls -lc --color=auto --no-group --human-readable --file-type'
+	alias la='ls -lc --color=auto --almost-all --no-group --human-readable --file-type'
 
 
 fi
