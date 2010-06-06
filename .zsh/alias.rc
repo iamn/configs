@@ -3,8 +3,6 @@
 # -----------------------------------------------
 #
 
-OS=${OSTYPE%%[0-9.]*}
-OSVERSION=${OSTYPE#$OS}
 
 ## Command Aliases
 alias r='screen -R'
@@ -14,38 +12,9 @@ alias vi='vim'
 
 
 
-if [[ $OS == "darwin" ]]; then
-
-
-	if [[ -f /opt/local/bin/ls ]]; then
-
-		# For Mac OS X's fink GNU version of LS
-		alias ls='/opt/local/bin/ls -lc --color=auto 			   --no-group --human-readable --file-type'
-		alias la='/opt/local/bin/ls -lc --color=auto --almost-all --no-group --human-readable --file-type'
-
-	else 
-		# Darwin, OSX:
-		alias ls='ls -lc -G -h -F'		# os x (NSI: builtin)
-		alias la='ls -lAF'
-
-	fi
-
-else
-
-	# GNU UNIX:		(== > $OS== "linux")
-	alias ls='ls -lc --color=auto --no-group --human-readable --file-type'
-	alias la='ls -lc --color=auto --almost-all --no-group --human-readable --file-type'
-
-
-fi
-
-
 alias matlab='matlab -nodesktop -nosplash'
 
-alias cdw='cd ~/work/Source\ Code'
 
-alias e='smartextract'
-alias o='open'
 
 alias less='less -r'
 alias tree='tree -C -A --dirsfirst --noreport -s'
@@ -87,10 +56,6 @@ alias -g H='|head'
 alias -g W='|wc -l'
 alias -g S='|sort'
 
-## Shell Aliases
-
-# UPenn
-alias srvr='ssh user@server.example.com'
 
 #----------------------------------------------------------------------------------------------
 ## Special Root Aliases

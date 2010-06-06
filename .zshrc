@@ -35,12 +35,8 @@ if echo hello|grep --color=auto l >/dev/null 2>&1; then
   export GREP_OPTIONS='--color=auto' GREP_COLOR='1;36'
 fi
 
-path=( /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin )	# basic dirs
+path=( $path /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin )	# basic dirs
 path=( $path ~/bin )													# personal bin 
-path=( $path /usr/local/texlive/2009/bin/universal-darwin )				# TeXLive 2009
-path=( $path /Applications/MATLAB_R2007b/bin/ )							# matlab
-path=( $path /Applications/Vim.app/Contents/MacOS/ )					# macvim
-path=( $path /opt/local/bin /opt/local/sbin )							# DarwinPorts
 
 export HISTFILE=~/.zsh/history
 export HISTSIZE=3000
@@ -376,18 +372,27 @@ bindkey "[4~" end-of-line
 # -----------------------------------------------
 # Lab-specific variables
 # -----------------------------------------------
-source ~/.zsh/xgrid.zsh
-
-#source ~/.zsh/hmpv_setup.zsh
-
-#source ~/.zsh/cellsdk_setup.zsh
-#
 
 
+if [ $TG_HOME ]; then
+	source ~/.zsh/local_teragrid.zsh
+else
+	source ~/.zsh/local_xgrid.zsh
 
-# print out a fortune if it's anywhere in the path
-if [ -f `which fortune` ]; then
-	fortune -a
+fi
+
+
+OS=${OSTYPE%%[0-9.]*}
+OSVERSION=${OSTYPE#$OS}
+
+if [[ $OS == "darwin" ]]; then
+
+	source ~/.zsh/local_darwin.zsh
+
+elif [[ $OS == "linux" ]]; then
+
+	source ~/.zsh/local_linux.zsh
+
 fi
 
 
