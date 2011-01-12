@@ -35,6 +35,10 @@ alias rm='rm -i'
 alias mmv='noglob zmv -W'
 alias find='noglob find'
 
+alias scp='noglob scp'		# i want to be able to use wildcards in scp!
+
+
+
 # use as  
 #	find . -depth | ccp ~/mnt/hippo
 alias ccp='cpio --pass-through --preserve-modification-time --make-directories
