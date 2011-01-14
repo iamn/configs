@@ -12,7 +12,7 @@ alias vi='vim'
 
 
 
-alias matlab='matlab -nodesktop -nosplash'
+alias matlab2010b='/Applications/MATLAB_R2010b.app/bin/matlab -nodesktop -nosplash'
 
 
 
