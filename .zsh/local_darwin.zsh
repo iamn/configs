@@ -1,5 +1,5 @@
-path=( $path /usr/local/texlive/2009/bin/universal-darwin )				# TeXLive 2009
-path=( $path /Applications/MATLAB_R2007b/bin/ )							# matlab
+path=( $path /usr/local/texlive/2010/bin/universal-darwin )				# TeXLive 2010
+path=( $path /Applications/MATLAB_R2010b/bin/ )							# matlab
 path=( $path /Applications/Vim.app/Contents/MacOS/ )					# macvim
 path=( $path /opt/local/bin /opt/local/sbin )							# DarwinPorts
 
