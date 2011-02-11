@@ -13,12 +13,12 @@ elseif has("gui_mac") || has("gui_macvim")
 endif
 
 
-
+set sbr=¬		" showbreak	string to put before wrapped screen lines
 set background=dark
 syntax on
 
 set columns=120			" Works well for the screen I have
-set lines=45			"   
+set lines=40			"   
 
 set cursorline
 "hi cursorline guibg=#003399
@@ -33,3 +33,8 @@ map <F7> <Esc>:setlocal nospell<CR>
 "hi SpellRare guifg=#ffffff guibg=#00007f gui=underline
 "hi SpellLocal term=reverse ctermfg=black ctermbg=darkgreen guifg=#ffffff guibg=#7f0000 gui=underline
 
+
+"
+" PRINTING OPTIONS
+"
+set printoptions=paper:letter,left:5pc,number:y,portrait:y			" add "portrait:n" for landscape

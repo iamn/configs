@@ -128,7 +128,7 @@ bind 'b' focus bottom
 # I also like to use C-j l to get a window list instead of C-j ":
 bind 'l' windowlist -b
 bind 's' split
-bind 'S' echo 'Hello, I am bored.'
+bind 'S' echo 'Hello, I am bored.'			# this was a dangerous key by default
 
 
 autodetach		on
