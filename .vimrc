@@ -19,7 +19,7 @@ endif
 "
 if has("unix")
 " If used in a *nix environment, use bash as shell
-  let &shell="bash"
+  let &shell="zsh"
   set ttyfast			" smoother output
 endif
 
@@ -184,15 +184,20 @@ highlight ErrorMsg guibg=White guifg=Red
 "colo xterm16
 
 
-" DIFF options -- ignore whitespace changes, but do add blank lines to sync display of files
-set diffopt=filler,iwhite
+set diffopt=filler,iwhite	" ignore whitespace changes, but do add blank lines to sync display of files
+"set diffopt=filler			" add blank lines to sync display of files
 
 
 
-au BufNewFile,BufRead  svn-commit.* setf svn set tw=0
-au BufNewFile,BufRead  svn-commit.* setlocal nocindent noai
+au BufNewFile,BufRead  svn-commit.* setlocal filetype=svn tw=0 noai nocindent
 
-au BufNewFile,BufRead  *.tex 		setlocal nocindent noai
+au BufNewFile,BufRead  *.tex 		setlocal nocindent noai tw=0 wrap linebreak number
+
+au BufNewFile,BufRead  *.stdout		set ts=8
+au BufNewFile,BufRead  *.stderr		set ts=8
+
+au BufNewFile,BufRead  *.m          setlocal tw=0
+
 
 
 
@@ -218,7 +223,7 @@ let g:explDetailedHelp=0
 
 "As of version 28 of <syntax/tex.vim>, syntax-based folding of parts, chapters,
 "sections, subsections, etc are supported.  Put >
-	"let g:tex_fold_enabled=1
+"	let g:tex_fold_enabled=1
 "in your <.vimrc>, and :set fdm=syntax.  I suggest doing the latter via a
 "modeline at the end of your LaTeX file: >
 "	% vim: fdm=syntax
