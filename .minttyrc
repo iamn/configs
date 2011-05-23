@@ -1,0 +1,15 @@
+BoldAsFont=no
+Transparency=high
+OpaqueWhenFocused=yes
+Font=Consolas
+FontHeight=13
+Term=xterm-256color
+BellFlash=yes
+CursorColour=149,43,255
+ScrollMod=off
+PgUpDnScroll=yes
+ForegroundColour=255,255,100
+Columns=100
+Rows=50
+Scrollbar=right
+CursorType=block
