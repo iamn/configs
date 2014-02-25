@@ -1,51 +1,20 @@
 
-"
-" Setup platform-specific options
-"
-if has("gui_running")
-
-" WINDOWS
-	if has("gui_win32")
+if has("gui_win32")
 	"set gfn=Bitstream_Vera_Sans_Mono:h12:cANSI
 	set guifont=Consolas:h13:cANSI
 	
-		colorscheme darkblue			" Load color scheme {name}
-		set background=dark			" since we set colorscheme based on platform, do same for bg
-
-" MAC OSX
-	elseif has("gui_mac") || has("gui_macvim")
+	"colorscheme darkblue	" Load color scheme {name}
+elseif has("gui_mac") || has("gui_macvim")
+	" if vim || MacVim
 	"set guifont=Monaco:h15
 	set guifont=Newport\ Gothic:h15
 
-		colorscheme ir_black			" Load color scheme {name}
-		set background=dark			" since we set colorscheme based on platform, do same for bg
-
-" GTK
-	elseif has("gui_gtk2")
-		set guifont=Courier\ New\ 11
-
-" ???
-	elseif has("gui_photon")
-		set guifont=Courier\ New:s11
-
-" KDE
-	elseif has("gui_kde")
-		set guifont=Courier\ New/11/-1/5/50/0/0/0/1/0
-
-" Generic X11 (incl. VMS)
-	elseif has("x11")
-		"set guifont=-misc-fixed-medium-r-normal--12-120-100-100-c-90-iso8859-1		" doesn't work?
-		"set guifont=-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso8859-1		" normal
-		set guifont=-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1		" big
-
-		colorscheme darkblue			" Load color scheme {name}
-		set background=dark			" since we set colorscheme based on platform, do same for bg
-	endif
+	colorscheme ir_black
 endif
 
 
-"set sbr=¬		" showbreak	string to put before wrapped screen lines
-set sbr=�		" showbreak	string to put before wrapped screen lines
+set sbr=¬		" showbreak	string to put before wrapped screen lines
+set background=dark
 syntax on
 
 set columns=120			" Works well for the screen I have
