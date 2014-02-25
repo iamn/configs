@@ -1,8 +1,15 @@
-
 "
 " Setup platform-specific options
 "
+
 if has("gui_running")
+
+  if has('unnamedplus')
+    set clipboard=unnamedplus         " on yank, share w/system clipboard:
+  else
+    set clipboard=unnamed
+  endif
+
 
 " WINDOWS
 	if has("gui_win32")
@@ -22,7 +29,8 @@ if has("gui_running")
 
 " GTK
 	elseif has("gui_gtk2")
-		set guifont=Courier\ New\ 11
+		"set guifont=Courier\ New\ 11
+    set guifont=Envy\ Code\ R\ 11
 
 " ???
 	elseif has("gui_photon")
@@ -37,6 +45,7 @@ if has("gui_running")
 		"set guifont=-misc-fixed-medium-r-normal--12-120-100-100-c-90-iso8859-1		" doesn't work?
 		"set guifont=-misc-fixed-medium-r-normal--15-140-75-75-c-90-iso8859-1		" normal
 		set guifont=-misc-fixed-medium-r-normal--20-200-75-75-c-100-iso8859-1		" big
+    "set guifont=-schumacher-clean-medium-r-normal-*-12-*-*-*-c-*-koi8-r 
 
 		colorscheme darkblue			" Load color scheme {name}
 		set background=dark			" since we set colorscheme based on platform, do same for bg
@@ -44,8 +53,8 @@ if has("gui_running")
 endif
 
 
-"set sbr=Â¬		" showbreak	string to put before wrapped screen lines
-set sbr=¬		" showbreak	string to put before wrapped screen lines
+set sbr=Â¬		" showbreak	string to put before wrapped screen lines
+"set sbr='¬'		" showbreak	string to put before wrapped screen lines
 syntax on
 
 set columns=120			" Works well for the screen I have
