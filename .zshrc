@@ -7,10 +7,10 @@
 #TERM=xterm-256color
 
 
-DISPLAY=:0.0
-EDITOR=vim
-PAGER=less
-FIGNORE='.o:.out:~'
+export DISPLAY=:0.0
+export EDITOR=vim
+export PAGER=less
+export FIGNORE='.o:.out:~'
 
 MAIL=/dev/null			# i use imap, so local mail is usually junk
 
@@ -35,8 +35,8 @@ export HISTSIZE=3000
 export SAVEHIST=3000
 
 # umask 022
-#export TERM EDITOR PAGER CVSROOT FIGNORE DISPLAY LS_COLORS COLORTERM PATH
-export TERM EDITOR PAGER FIGNORE LS_COLORS PATH
+#export TERM CVSROOT LS_COLORS COLORTERM PATH
+export TERM LS_COLORS PATH
 
 
 
