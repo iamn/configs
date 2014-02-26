@@ -21,7 +21,6 @@ if [[ -n $SSH_CLIENT ]] {
 
 
 ################## COLORISE
-# GNU Colors 需要/etc/DIR_COLORS文件 否则自动补全时候选菜单中的选项不能彩色显示
 [ -f ~/.dircolors ] && [ -f /opt/local/bin/dircolors ] && eval $(/opt/local/bin/dircolors ~/.dircolors) 
 
 

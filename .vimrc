@@ -7,15 +7,6 @@
 
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" When started as "evim", evim.vim will already have done these settings.
-"
-if v:progname =~? "evim"
-  finish
-endif
-
-
-
 set ttyfast			" smoother output
 
 set runtimepath+=~/.vim/
@@ -30,10 +21,9 @@ if has("unix")
 	"set t_Co=256
 	set term=xterm-256color
 
-	"let hostfile=substitute(system('hostname -d'), '.com\n', '.vim', '')
-
-    "if(( match(hostname(), 'unixdev') >= 0 ) && filereadable("~/.vim/local/factset.vim") )
-  source ~/.vim/local/factset.vim
+	if !empty( eval("$FDS_TABLE_NUMBER"))
+		source ~/.vim/local/factset.vim 	" load FactSet-specific files:
+	endif
 
 
 elseif has('mac')
@@ -52,14 +42,14 @@ elseif has("vms")
 	autocmd FileType c,cpp,cxx	set iskeyword+=$
 
 
-  " map opening prev/next version of the current file:
-  map <C-n> <ESC>:call VersionNext()<Return>
-  map <C-p> <ESC>:call VersionPrev()<Return>
+	" map opening prev/next version of the current file:
+	map <C-n> <ESC>:call VersionNext()<Return>
+	map <C-p> <ESC>:call VersionPrev()<Return>
 
 
-
-	" load FactSet-specific files:
-  source ~/_vim/local/factset.vim
+	if !empty( eval("$FDS_TABLE_NUMBER"))
+		source ~/_vim/local/factset.vim 	" load FactSet-specific files:
+	endif
 
 endif
 
