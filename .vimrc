@@ -4,9 +4,7 @@
 "
 
 
-
-
-
+set term=ansi
 set ttyfast			" smoother output
 
 set runtimepath+=~/.vim/
@@ -14,14 +12,13 @@ set runtimepath+=~/.vim/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Platform-specific initialization
 "
-
 if has("unix")
 	" If used in a *nix environment, use bash as shell
 	"let &shell="zsh"
-	"set t_Co=256
+	set t_Co=256
 	set term=xterm-256color
 
-	if !empty( eval("$FDS_TABLE_NUMBER"))
+	if !empty( $FDSENV )
 		source ~/.vim/local/factset.vim 	" load FactSet-specific files:
 	endif
 
@@ -37,6 +34,7 @@ elseif has("vms")
 	set nobackup	      " does not create *.*_ backup files
 	set nowritebackup   " does not have any purpose on VMS.  It's the default.
 
+	set t_Co=64
 
 	" VMS allows '$' in C, so make sure that doesn't mess up our code:
 	autocmd FileType c,cpp,cxx	set iskeyword+=$
@@ -47,11 +45,22 @@ elseif has("vms")
 	map <C-p> <ESC>:call VersionPrev()<Return>
 
 
-	if !empty( eval("$FDS_TABLE_NUMBER"))
+	if !empty( $FDS_TABLE_NUMBER" )
 		source ~/_vim/local/factset.vim 	" load FactSet-specific files:
 	endif
 
 endif
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" turn on syntax highlighting
+"
+
+if has('syntax') && (&t_Co > 2)
+  syntax on
+  set background=dark
+endif
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 " If possible, try to use a narrow number column.
 if v:version >= 700
@@ -62,34 +71,13 @@ if v:version >= 700
 endif
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" have syntax highlighting in terminals which can display colours:
-"
-if has('syntax') && (&t_Co > 2)
-	set background=dark
-	syntax on
-endif
-
-"set term=builtin_ansi
-set term=ansi
-
-if has('mac')
-	" terminal can support lots of colors
-	set t_Co=256
-	colorscheme ir_black
-else
-	set t_Co=64
-endif 
-
-syntax on
-
 "source ~/.vim/filetype.vim
 
 "set columns=80			" Works well for the screen I have
 "set lines=54			"   
 
 set nocompatible		" don't bother staying compatible w/vi
-filetype indent plugin on		" enable loading the indent file for specific file types with: >
+filetype indent plugin on	" enable loading the indent file for specific file types with: >
 
 
 set nobackup			" DON'T keep a backup file
