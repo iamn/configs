@@ -10,7 +10,12 @@ alias sls='screen -ls'
 
 alias vi='vim'
 
+alias ssh='ssh -Y'
 
+alias lo=logout	# damn you VMS!
+
+alias ll=ls
+alias l=ll
 
 alias matlab2010b='/Applications/MATLAB_R2010b.app/bin/matlab -nodesktop -nosplash'
 
