@@ -11,10 +11,6 @@ EDITOR=vim
 PAGER=less
 FIGNORE='.o:.out:~'
 
-#DISPLAY=:0.0
-#DISPLAY=$REMOTEHOST:0.0
-#DISPLAY=128.208.15.7:0.0
-
 MAIL=/dev/null			# i use imap, so local mail is usually junk
 
 if [[ -n $SSH_CLIENT ]] {
@@ -375,9 +371,9 @@ bindkey "[4~" end-of-line
 
 
 if [ $TG_HOME ]; then
-	source ~/.zsh/local_teragrid.zsh
+	source ~/.zsh/local/teragrid.zsh
 else
-	source ~/.zsh/local_xgrid.zsh
+	source ~/.zsh/local/xgrid.zsh
 
 fi
 
@@ -387,11 +383,11 @@ OSVERSION=${OSTYPE#$OS}
 
 if [[ $OS == "darwin" ]]; then
 
-	source ~/.zsh/local_darwin.zsh
+	source ~/.zsh/local/darwin.zsh
 
 elif [[ $OS == "linux" ]]; then
 
-	source ~/.zsh/local_linux.zsh
+	source ~/.zsh/local/linux.zsh
 
 fi
 

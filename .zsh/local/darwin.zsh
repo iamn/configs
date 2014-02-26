@@ -31,4 +31,3 @@ alias o='open'
 if [ -f `which fortune` ]; then
 	fortune -a
 fi
-
