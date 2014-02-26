@@ -7,15 +7,12 @@
 #TERM=xterm-256color
 
 
+DISPLAY=:0.0
 EDITOR=vim
 PAGER=less
 FIGNORE='.o:.out:~'
 
 MAIL=/dev/null			# i use imap, so local mail is usually junk
-
-if [[ -n $SSH_CLIENT ]] {
-#	export DISPLAY=128.208.15.7:0.0;
-}
 
 
 
@@ -389,5 +386,3 @@ elif [[ $OS == "linux" ]]; then
 	source ~/.zsh/local/linux.zsh
 
 fi
-
-
