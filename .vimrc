@@ -88,7 +88,7 @@ syntax on
 "set columns=80			" Works well for the screen I have
 "set lines=54			"   
 
-set nocompatible
+set nocompatible		" don't bother staying compatible w/vi
 filetype indent plugin on		" enable loading the indent file for specific file types with: >
 
 
@@ -179,8 +179,10 @@ set listchars +=tab:\|\ ,precedes:<,extends:>
 " make searches case-insensitive, unless they contain upper-case letters:
 set ignorecase			" ignore case
 set smartcase			" but don't ignore it, when search string contains uppercase letters
-" show the `best match so far' as search strings are typed:
-set incsearch		" do incremental searching
+
+
+set incsearch			" show the `best match so far' as search strings are typed; aka do incremental searching
+
 " assume the /g flag on :s substitutions to replace all matches in a line:
 "set gdefault
 
@@ -221,8 +223,6 @@ map <M-<> <C-W><
 map <M->> <C-W>>
 
 
-highlight Search guibg=LightBlue ctermbg=LightBlue 
-highlight ErrorMsg guibg=White guifg=Red 
 
 map <F11> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
@@ -262,6 +262,11 @@ let vimsyn_folding='af'       " Vim script
 let xml_syntax_folding=1      " XML
 
 
+"
+" Fix up syntax
+"
+highlight Search      guibg=LightBlue ctermbg=LightBlue 
+highlight ErrorMsg    ctermbg=white ctermfg=red guibg=White guifg=Red 
 
 highlight MyGroup     ctermbg=LightBlue ctermfg=black
 :mat MyGroup /NSI\|nimennov\|NIMENNOV\|nikita:/
