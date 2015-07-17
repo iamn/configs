@@ -82,37 +82,8 @@ autoload zmv
 
 
 
-# -----------------------------------------------
-# Set up zsh autocompletions
-# -----------------------------------------------
-
-
 # from http://zshwiki.org/home/examples/compsys/colors
 autoload colors
-
-
-
-#### add the hostnames from ~/.ssh/known_hosts
-###local _myhosts
-###if [[ -f $HOME/.ssh/known_hosts ]]; then
-###	_myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
-###	zstyle ':completion:*' hosts $_myhosts
-###fi
-
-# complete only dirs (or symlinks to dirs in some cases) for certain commands
-compctl -g '*(/)' rmdir dircmp
-compctl -g '*(-/)' cd chdir dirs pushd
-
-
-compctl -j -P '%' -x 's[-] p[1]' -k signals -- kill
-compctl -j -P '%' fg bg wait jobs disown
-compctl -A shift
-compctl -caF type whence which
-compctl -F unfunction
-compctl -a unalias
-compctl -v unset typeset declare vared readonly export integer
-compctl -e disable
-compctl -d enable
 
 
 
@@ -138,7 +109,7 @@ setopt \
 # -----------------------------------------------
 # Shell Aliases
 # -----------------------------------------------
-source ~/.zsh/alias.rc
+source ~/.zsh/alias.zsh
 
 #source ~/.zsh/zkbd.zsh
 

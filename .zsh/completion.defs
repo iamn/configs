@@ -13,6 +13,27 @@ compinit
 #
 
 
+# -----------------------------------------------
+# Set up zsh autocompletions
+# -----------------------------------------------
+
+
+# complete only dirs (or symlinks to dirs in some cases) for certain commands
+compctl -g '*(/)' rmdir dircmp
+compctl -g '*(-/)' cd chdir dirs pushd
+
+
+compctl -j -P '%' -x 's[-] p[1]' -k signals -- kill
+compctl -j -P '%' fg bg wait jobs disown
+compctl -A shift
+compctl -caF type whence which
+compctl -F unfunction
+compctl -a unalias
+compctl -v unset typeset declare vared readonly export integer
+compctl -e disable
+compctl -d enable
+
+
 
 
 
