@@ -58,6 +58,7 @@ alias reviewboard='/home/data/index/script/common/submit_review_board.pl'
 alias usc="us_calc"
 
 alias defsd='source X86_64_DEBUG/environment.sh'
+alias defsr='source X86_64/environment.sh'
 
 #alias xdb='xterm -font 10x20 +sb -fg goldenrod1 -bg black -e gdb --tty `tty` --args'
 alias xdb='xterm -font 9x15 -rightbar -fg goldenrod1 -bg black -e gdb --tty `tty` --args'
