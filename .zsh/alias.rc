@@ -4,24 +4,24 @@ alias grep='grep --color=auto'
 
 alias ssh='ssh -Y'
 
-alias lo=logout	# damn you VMS!
+alias lo=exit	# damn you VMS!
 
 alias cdp=pushd
 
 
 lsopts=' --human -F -l -A '
-if [[ ${OS} == "linux" ]] ; then
-    lsopts+='--color=auto'
-elif [[ ${OS} == "darwin" ]] ; then
-    lsopts+='-G'
-fi
+case "${OSTYPE}" in
+	(linux|cygwin))
+		lsopts+='--color=auto'
+		;;
+	darwin)
+		lsopts+='-G'
+		;;
+esac
 alias ls="ls ${lsopts}"
+alias l=ls
 unset lsopts
 
-
-
-alias ll=ls
-alias l=ll
 
 
 
@@ -72,11 +72,9 @@ alias ccp='cpio --pass-through --preserve-modification-time --make-directories
 #-----------------------------------------------------------------------------------------
 ## Pipe Aliases (Global)
 #-----------------------------------------------------------------------------------------
-
-	alias -g L='|less'
-	alias -g G='|grep'
-	alias -g T='|tail'
-	alias -g H='|head'
-	alias -g W='|wc -l'
-	alias -g S='|sort'
-fi
+alias -g L='|less'
+alias -g G='|grep'
+alias -g T='|tail'
+alias -g H='|head'
+alias -g W='|wc -l'
+alias -g S='|sort'

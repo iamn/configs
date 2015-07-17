@@ -2,10 +2,7 @@
 # Set up the Environment
 # -----------------------------------------------
 
-#TERM=screen
-#COLORTERM=yes
 #TERM=xterm-256color
-
 
 export DISPLAY=:0.0
 export EDITOR=vim
@@ -16,11 +13,6 @@ MAIL=/dev/null			# i use imap, so local mail is usually junk
 
 
 
-
-################## COLORISE
-[ -f ~/.dircolors ] && [ -f /opt/local/bin/dircolors ] && eval $(/opt/local/bin/dircolors ~/.dircolors) 
-
-
 path=( $path /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin )	# basic dirs
 path=( $path ~/bin )													# personal bin 
 
@@ -29,8 +21,10 @@ export HISTSIZE=3000
 export SAVEHIST=3000
 
 # umask 022
-#export TERM CVSROOT LS_COLORS COLORTERM PATH
-export TERM LS_COLORS PATH
+export TERM PATH
+
+OS=${OSTYPE%%[0-9.]*}
+OSVERSION=${OSTYPE#$OS}
 
 
 
@@ -176,13 +170,13 @@ bindkey "[4~" end-of-line
 
 
 
-OS=${OSTYPE%%[0-9.]*}
-OSVERSION=${OSTYPE#$OS}
-
-if [[ $OS == 	"darwin" ]]; then
-	source ~/.zsh/local/darwin.zsh
-elif [[ $OS == 	"linux" ]]; then
-	source ~/.zsh/local/linux.zsh
-elif [[ $OS == 	"cygwin" ]]; then
-	source ~/.zsh/local/cygwin.zsh
+if [[ -f ~/.zsh/local/${OS}.zsh ]]; then
+	source ~/.zsh/local/${OS}.zsh
 fi
+
+
+################## COLORISE
+#if [[ hash dircolors 2> /dev/null ]]; then
+#	echo "exists!"
+#	eval $(dircolors ~/.dircolors)
+#fi
