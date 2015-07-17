@@ -1,0 +1,144 @@
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _expand _complete _ignored
+zstyle ':completion:*' expand prefix suffix
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' list-suffixes true
+zstyle :compinstall filename '/home/nimennov/.zsh/completion.defs'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+#
+
+
+
+
+
+
+# case-insensitive tab completion for filenames (useful on Mac OS X)
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# General completion technique
+zstyle ':completion:*' completer _complete _correct _approximate _prefix
+zstyle ':completion:*' completer _complete _prefix
+zstyle ':completion::prefix-1:*' completer _complete
+zstyle ':completion:incremental:*' completer _complete _correct
+zstyle ':completion:predict:*' completer _complete
+
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
+
+
+# Completion caching
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' cache-path ~/.zsh/cache/$HOST
+
+# Expand partial paths
+zstyle ':completion:*' expand 'yes'
+zstyle ':completion:*' squeeze-slashes 'yes'
+
+# Don't complete backup files as executables
+zstyle ':completion:*:complete:-command-::commands' ignored-patterns '*\~'
+
+
+
+
+# Group matches and Describe
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+
+# Describe each match group.
+#zstyle ':completion:*:descriptions' format "%B---- %d%b"
+zstyle ':completion:*:descriptions' format $'\e[01;33m -- %d --\e[0m'
+
+# Messages/warnings format
+#zstyle ':completion:*:messages' format '%B%U---- %d%u%b' 
+zstyle ':completion:*:messages' format $'\e[01;35m -- %d --\e[0m'
+#zstyle ':completion:*:warnings' format '%B%U---- no match for: %d%u%b'
+zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
+
+
+
+ 
+# Describe options in full
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+
+zstyle ':completion:*:history-words' stop yes
+zstyle ':completion:*:history-words' remove-all-dups yes
+zstyle ':completion:*:history-words' list false
+zstyle ':completion:*:history-words' menu yes
+
+
+
+
+
+
+
+
+
+
+
+#------------------------------------------------------------------------------
+#A possibly better solution would  be to complete on the tex file
+#first, but would still complete on the other files if there is no
+#other completion :
+#zstyle ':completion::*:(vi|vim):*' file-patterns '*.tex' '*'
+#
+#...that way, if there is a tex file and you hit tab, zsh will complete
+#on the tex file even if there are other acceptable completions.
+#
+#
+#It's also possible, and probably even better, to complete first on
+#whatever is not one of the outputs of latex, while retaining the
+#completion on them failing that.
+zstyle ':completion::*:(vi|vim):*'	file-patterns '*.tex' '*~*.(aux|dvi|log|bbl|blg|idx|pdf|rel|out)' '*'
+
+zstyle ':completion::*:open:*'		file-patterns '*.pdf' '*'
+zstyle ':completion::*:open:*'		menu yes select
+zstyle ':completion::*:open:*'		file-sort time
+
+
+
+# tab completion for PID :D
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*' force-list always
+zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=$color[cyan]=$color[red]"
+
+#------------------------------------------------------------------------------
+# Similar things for tex, texinfo and dvi files.
+compctl -/g '*.tex*' {,la,gla,ams{la,},{g,}sli}tex texi2dvi
+
+
+
+zstyle ':completion:*:(vi|vim):*' ignored-patterns '*.o'
+# From zshwiki.org
+
+#Prevent CVS files/directories from being completed :
+zstyle ':completion:*:(all-|)files' ignored-patterns '(|*/)CVS'
+zstyle ':completion:*:cd:*' ignored-patterns '(*/)#CVS'
+
+# Same for lost+found directories
+zstyle ':completion:*:cd:*' ignored-patterns '(*/)#lost+found'
+
+# Ignore what's already in the line With commands like `rm/kill/diff' it's
+# annoying if one gets offered the same filename again even if it is
+# already on the command line. To avoid that:
+zstyle ':completion:*:(rm|kill|diff):*' ignore-line yes
+
+
+
+
+#
+# nikita: appears superceded by the auto-generated command above
+#zstyle ":completion:*:*:$command:*:$tag" list-colors "=(#b)\
+#	=$zshregex_with_brackets\
+#	=$default_color_escape_number\
+#	=$color_number_for_letters_in_first_bracket-pair\
+#	=$color_number_for_letters_in_second_bracket-pair"     "..."
+
+
+
