@@ -4,11 +4,7 @@
 
 if has("gui_running")
 
-  if has('unnamedplus')
     set clipboard=unnamedplus         " on yank, share w/system clipboard:
-  else
-    set clipboard=unnamed
-  endif
 
 
 " WINDOWS

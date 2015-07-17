@@ -1,47 +1,63 @@
-# -----------------------------------------------
-# Shell Aliases
-# -----------------------------------------------
-#
-
-
-## Command Aliases
-alias r='screen -R'
-alias sls='screen -ls'
-
 alias vi='vim'
+
+alias grep='grep --color=auto'
 
 alias ssh='ssh -Y'
 
 alias lo=logout	# damn you VMS!
 
+alias cdp=pushd
+
+
+lsopts=' --human -F -l -A '
+if [[ ${OS} == "linux" ]] ; then
+    lsopts+='--color=auto'
+elif [[ ${OS} == "darwin" ]] ; then
+    lsopts+='-G'
+fi
+alias ls="ls ${lsopts}"
+unset lsopts
+
+
+
 alias ll=ls
 alias l=ll
-
-alias matlab2010b='/Applications/MATLAB_R2010b.app/bin/matlab -nodesktop -nosplash'
 
 
 
 alias less='less -r'
 alias tree='tree -C -A --dirsfirst --noreport -s'
 
+
 alias xterm='xterm -fn 9x15 -bg black -fg goldenrod1'
 
+alias df='df -h'
 alias du='du -h'
 alias mv='mv -i'
 alias cp='cp -i'
 alias rm='rm -i'
 
 
+#-----------------------------------------------------------------------------------------
+## Special Root Aliases
+#-----------------------------------------------------------------------------------------
+[ ${UID} = 0 ] && \
+	alias rm='rm -i' && \
+	alias mv='mv -i' && \
+	alias cp='cp -i'
 
 
-#----------------------------------------------------------------------------------------------
+
+
+#-----------------------------------------------------------------------------------------
 #																			ZSH-specific
-#----------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------
 alias mmv='noglob zmv -W'
 alias find='noglob find'
 
-alias scp='noglob scp'		# i want to be able to use wildcards in scp!
+alias scp='noglob scp'				# i want to be able to use wildcards in scp!
 
+alias lm='print *(.om[1,10])'		# print 5 most recent normal files (i.e., ".")
 
 
 # use as  
@@ -49,40 +65,18 @@ alias scp='noglob scp'		# i want to be able to use wildcards in scp!
 alias ccp='cpio --pass-through --preserve-modification-time --make-directories
 --verbose'
 
-alias cdp=pushd
 
 
 
 
-
-#----------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------
 ## Pipe Aliases (Global)
-#----------------------------------------------------------------------------------------------
-alias -g L='|less'
-alias -g G='|grep'
-alias -g T='|tail'
-alias -g H='|head'
-alias -g W='|wc -l'
-alias -g S='|sort'
+#-----------------------------------------------------------------------------------------
 
-
-#----------------------------------------------------------------------------------------------
-## Special Root Aliases
-#----------------------------------------------------------------------------------------------
-[ $UID = 0 ] && \
-	alias m='make' && \
-	alias mi='make install' && \
-	alias rm='rm -i' && \
-	alias mv='mv -i' && \
-	alias cp='cp -i'
-
-
-
-#----------------------------------------------------------------------------------------------
-#															OBSOLETE, FROM OLD MACHINES/ACCOUNTS
-#----------------------------------------------------------------------------------------------
-#
-#alias yum='sudo yum'
-
-#alias mountBleed='/sbin/mount.cifs //pallada/bleed ~/mnt/windows/bleed -o uid=imennov,gid=icsl,file_mode=0600,dir_mode=0755'
-
+	alias -g L='|less'
+	alias -g G='|grep'
+	alias -g T='|tail'
+	alias -g H='|head'
+	alias -g W='|wc -l'
+	alias -g S='|sort'
+fi

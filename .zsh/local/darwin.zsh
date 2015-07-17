@@ -4,6 +4,12 @@ path=( $path /Applications/Vim.app/Contents/MacOS/ )					# macvim
 path=( $path /opt/local/bin /opt/local/sbin )							# DarwinPorts
 
 
+if [[ ${HOST} == "rublab"]]; then
+	# -----------------------------------------------
+	# Lab-specific variables
+	# -----------------------------------------------
+	source ~/.zsh/local/xgrid.zsh
+fi
 
 
 
