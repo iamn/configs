@@ -103,15 +103,13 @@ setopt \
 	LONG_LIST_JOBS \
 	PUSHD_SILENT \
 	zle \
-	auto_pushd 
-#	complete_aliases \
+	auto_pushd \
+ 	complete_aliases
 
 # -----------------------------------------------
 # Shell Aliases
 # -----------------------------------------------
 source ~/.zsh/alias.zsh
-
-#source ~/.zsh/zkbd.zsh
 
 # -----------------------------------------------
 #  User-defined Functions
@@ -121,6 +119,10 @@ source ~/.zsh/alias.zsh
 #  END
 # -----------------------------------------------
 
+
+bindkey -v
+bindkey '\e[3~' delete-char
+bindkey '^R' history-incremental-search-backward
 
 #bindkey "[A" history-beginning-search-backward
 #bindkey "[B" history-beginning-search-forward
@@ -135,7 +137,6 @@ bindkey "[Z" _history-complete-older
 
 bindkey "[1~" beginning-of-line
 bindkey "[4~" end-of-line
-
 
 
 
