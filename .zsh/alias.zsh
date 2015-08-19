@@ -24,6 +24,8 @@ unset lsopts
 
 
 
+alias glog="git log --format='%Cgreen%h%Creset %C(cyan)%an%Creset - %s' --graph"
+
 
 alias less='less -r'
 alias tree='tree -C -A --dirsfirst --noreport -s'
