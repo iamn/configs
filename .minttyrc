@@ -1,5 +1,5 @@
 BoldAsFont=yes
-CursorColour=255,0,255
+CursorColour=15,15,15
 CursorType=block
 CursorBlinks=yes
 Font=Envy Code R
@@ -11,4 +11,4 @@ Transparency=off
 RightClickAction=paste
 Columns=50
 Rows=61
-BackgroundColour=0,0,0
+BackgroundColour=20,20,20
