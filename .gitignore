@@ -1,3 +1,9 @@
 .Rproj.user
 .Rhistory
 .RData
+.ICEauthority
+.forward
+.lesshst
+.p4*
+.vim/.netrwhist
+.vim/view
