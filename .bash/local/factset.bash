@@ -55,6 +55,7 @@ alias fqlf="fql_definition"
 alias gd="source /home/fonix/prd_progs/tools/define_rakefds_logicals.sh release"
 alias gdd="source /home/fonix/prd_progs/tools/define_rakefds_logicals.sh debug"
 alias reviewboard='/home/data/index/script/common/submit_review_board.pl'
+alias rb_new='~zauclair/submit_review_board_new.pl'
 alias usc="us_calc"
 
 alias defsd='source X86_64_DEBUG/environment.sh'

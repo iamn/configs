@@ -51,12 +51,11 @@ elseif has("vms")
 
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" turn on syntax highlighting
+" have syntax highlighting in terminals that can display colours:
 "
-
 if has('syntax') && (&t_Co > 2)
-  syntax on
-  set background=dark
+	set background=dark
+	syntax on
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

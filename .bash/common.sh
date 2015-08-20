@@ -16,49 +16,6 @@ elif [[ ${os} == "Darwin" ]] ; then
 fi
 
 
-alias vi="vim"
-alias vim="vim -X"
-
-
-
-#aliases
-alias date="date +%a%t%b%t%D%l:%M:%S%p"
-alias df='df -h'
-alias du='du -h'
-alias more="less" # never use more, use less instead
-alias unhist='unset HISTFILE'
-
-
-# colorful commands
-alias grep='grep --colour=auto'
-
-# make ls print human readable sizes and append a character to identify items
-
-
-lsopts=' --human -F -l -A '
-if [[ ${os} == "Linux" ]] ; then
-    lsopts+='--color=auto'
-elif [[ ${os} == "Darwin" ]] ; then
-    lsopts+='-G'
-fi
-alias ls="ls ${lsopts}"
-alias l=ls
-unset lsopts
-
-alias tree='tree -CFA'
-
-# make all these commands safer
-alias cp="cp -vi"
-alias mv="mv -vi"
-alias rm="rm -vi"
-
-if [[ ${os} == "Linux" ]] ; then
-    alias rmdir="rmdir -v"
-fi
-
-# make mkdir create long pathnames by default
-alias mkdir="mkdir -p"
-
 # no bells
 set bell-style none
 # notifies about background jobs
@@ -164,8 +121,9 @@ shopt -s no_empty_cmd_completion
 ###esac
 
 
-
-
+if [[ -f ${HOME}/.bash/alias.sh ]] ; then
+  . ${HOME}/.bash/alias.sh;
+fi
 
 if [[ -f ${HOME}/.bash/local/factset.bash ]] ; then
   . ${HOME}/.bash/local/factset.bash
