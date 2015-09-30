@@ -28,12 +28,12 @@ if has("gui_running")         " redundant?
 		"colo xterm16
 
 
-
-
 " GTK
 	elseif has("gui_gtk2")
-		set guifont=Courier\ New\ 11
+		"set guifont=Courier\ New\ 11
 		"set guifont=Envy\ Code\ R\ 11
+		set guifont=DejaVu\ Sans\ Mono\ 11
+		colorscheme wombat256
 
 " ???
 	elseif has("gui_photon")
@@ -55,8 +55,6 @@ if has("gui_running")         " redundant?
 endif
 
 
-"set sbr=Â¬		" showbreak	string to put before wrapped screen lines
-set sbr=¬		" showbreak	string to put before wrapped screen lines
 syntax on
 
 set columns=120			" Works well for the screen I have
@@ -65,7 +63,7 @@ set lines=40			"
 set cursorline
 "hi cursorline guibg=#003399
 "hi cursorline guibg=#666699
-hi cursorline guibg=#333366
+"hi cursorline guibg=#333366
 "hi CursorColumn guibg=#333333
 
 

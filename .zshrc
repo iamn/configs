@@ -76,7 +76,7 @@ fi
 
 # compinit initializes various advanced completions for zsh
 autoload -U compinit && compinit 
-. /home/nimennov/.zsh/completion.defs
+. ~/.zsh/completion.defs
 # zmv is a batch file rename tool; e.g. zmv '(*).text' '$1.txt'
 autoload zmv
 
