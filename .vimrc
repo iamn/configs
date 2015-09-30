@@ -59,12 +59,10 @@ if &encoding == "utf-8"
 	"set sbr=¬		" showbreak	string to put before wrapped screen lines
 	exe "set showbreak=\u21b3"
 
-	asdfadsfadf
-
 	exe "set listchars=nbsp:\u2423,conceal:\u22ef,tab:\u2595\u2014,trail:\u02d1,precedes:\u2026,extends:\u2026,eol:\ub6"
 	if v:version > 704
-		exe "set listchars+=space:\u2423"
-		" exe "set listchars+=space:\ub7"
+		"exe "set listchars+=space:\u2423"
+		exe "set listchars+=space:\ub7"
 	endif
 
 	exe "set fillchars=vert:\u2502,fold:\u2500,diff:\u2014"
