@@ -4,6 +4,8 @@
 .Rproj.user
 .Xauthority
 .bash_history
+.bash_profile
+.bash/history
 .forward
 .lesshst
 .octave_hist
