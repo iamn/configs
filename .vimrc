@@ -2,6 +2,7 @@
 " Nikita Imennov	<imennov@ >
 "
 "
+scriptencoding utf-8
 
 
 set term=ansi
@@ -56,19 +57,21 @@ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if &encoding == "utf-8"
-	"set sbr=¬		" showbreak	string to put before wrapped screen lines
+	" showbreak	string to put before wrapped screen lines
 	exe "set showbreak=\u21b3"
 
-	exe "set listchars=nbsp:\u2423,conceal:\u22ef,tab:\u2595\u2014,trail:\u02d1,precedes:\u2026,extends:\u2026,eol:\ub6"
+	exe "set listchars=nbsp:\u2423,tab:\u2595\u2014,trail:\u02d1,precedes:\u2026,extends:\u2026,eol:\ub6"
 	if v:version > 704
 		"exe "set listchars+=space:\u2423"
 		exe "set listchars+=space:\ub7"
+		exe "set listchars+=conceal:\u22ef"
 	endif
 
 	exe "set fillchars=vert:\u2502,fold:\u2500,diff:\u2014"
 else
 	set showbreak="+"
-	set listchars=eol:$,trail:-,tab:>-,extends:>,precedes:<,conceal:+
+	set listchars=eol:$,trail:-,tab:\|\ ,extends:>,precedes:<,conceal:+
+
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " If possible, try to use a narrow number column.
@@ -81,10 +84,6 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-"source ~/.vim/filetype.vim
-
-"set columns=80			" Works well for the screen I have
-"set lines=54			"   
 
 set nocompatible		" don't bother staying compatible w/vi
 filetype indent plugin on	" enable loading the indent file for specific file types with: >
@@ -163,8 +162,6 @@ let &statusline = '%-2.2n %<%F%:%l,%c%V %m'                                     
 
 
 
-" Accuse lines longer than width
-set listchars +=tab:\|\ ,precedes:<,extends:>
 
 
 " Colors for &number
@@ -220,9 +217,8 @@ map + <C-W>+
 map <M-<> <C-W><
 map <M->> <C-W>>
 
-
-
 map <F11> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+
 
 "set diffopt=filler,iwhite	" ignore whitespace changes, but do add blank lines to sync display of files
 set diffopt=filler			" add blank lines to sync display of files
