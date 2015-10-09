@@ -67,7 +67,7 @@ if &encoding == "utf-8"
 		exe "set listchars+=conceal:\u22ef"
 	endif
 
-	exe "set fillchars=vert:\u2502,fold:\u2500,diff:\u2014"
+	"exe "set fillchars=vert:\u2502,fold:\u2500,diff:\u2014"
 else
 	set showbreak="+"
 	set listchars=eol:$,trail:-,tab:\|\ ,extends:>,precedes:<,conceal:+
