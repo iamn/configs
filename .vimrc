@@ -5,7 +5,6 @@
 scriptencoding utf-8
 
 
-set term=ansi
 set ttyfast			" smoother output
 
 set runtimepath+=~/.vim/
