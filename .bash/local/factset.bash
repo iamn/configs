@@ -19,9 +19,6 @@ export MANPATH="$MANPATH:~/local/man:~/local/share/man"
 ################################################################################
 # Configure the environment:
 #
-#export PAB_INHOUSE_TESTING=1 # so pa_batch_main doesn't hang   (http://is.factset.com/rpd/summary.aspx?messageid=13665602) 
-
-export risk_fds_mac_core_calc_threads=8 # turn on threading 
 
 
 ##### X11 stuff:
@@ -80,10 +77,6 @@ alias p4lsChanges='p4 changes -L -c $(grep P4CLIENT .p4rc | cut -d = -f2)'
 alias p4diff='P4DIFF=colordiff p4 diff'
 
 unalias p4    # take the training wheels off --- no p4fds.pl!
-
-###echo "DISABLING remote rakefds"
-### export RAKEFDS_WRAPPER_NO_REMOTE=1
-export RAKEFDS_WRAPPER_REMOTE=1
 
 alias quota="quota --human-readable --quiet-refuse"
 alias lunch_vote="~sjaffe/tools/lunch/vote_for_lunch"
