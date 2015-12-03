@@ -223,6 +223,12 @@ map <F11> :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 set diffopt=filler			" add blank lines to sync display of files
 
 
+" This command will change the 'completeopt' option so that Vim's popup menu doesn't select
+" the first completion item, but rather just inserts the longest common text of all matches;
+" and the menu will come up even if there's only one match. (The longest setting is responsible
+" for the former effect and the menuone is responsible for the latter.)
+set completeopt=longest,menuone
+
 
 
 au BufNewFile,BufRead  svn-commit.* setlocal filetype=svn tw=0 noai nocindent
