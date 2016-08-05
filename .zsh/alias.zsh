@@ -1,15 +1,17 @@
+# -----------------------------------------------
+# Shell Aliases
+# -----------------------------------------------
+#
+
 alias vi='vim'
 
 alias grep='grep --color=auto'
-
-alias ssh='ssh -Y'
-
 alias lo=exit	# damn you VMS!
 
 alias cdp=pushd
 
 
-lsopts=' --human -F -l -A '
+lsopts=' --human-readable --file-type -lc --almost-all '
 case "${OSTYPE}" in
 	(linux|cygwin))
 		lsopts+='--color=auto'
