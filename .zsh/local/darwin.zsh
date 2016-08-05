@@ -1,23 +1,17 @@
 path=( $path /usr/local/texlive/2010/bin/universal-darwin )				# TeXLive 2010
 path=( $path /Applications/MATLAB_R2010b/bin/ )							# matlab
 path=( $path /Applications/Vim.app/Contents/MacOS/ )					# macvim
-path=( $path /opt/local/bin /opt/local/sbin )							# DarwinPorts
 
 
-if [[ ${HOST} == "rublab"]]; then
-	# -----------------------------------------------
-	# Lab-specific variables
-	# -----------------------------------------------
-	source ~/.zsh/local/xgrid.zsh
-fi
 
 
 
 if [[ -f /opt/local/bin/ls ]]; then
+	path=( $path /opt/local/bin /opt/local/sbin )						# DarwinPorts
 
 	# For Mac OS X's fink GNU version of LS
-	alias ls='/opt/local/bin/ls -lc --color=auto 			   --no-group --human-readable --file-type'
-	alias la='/opt/local/bin/ls -lc --color=auto --almost-all --no-group --human-readable --file-type'
+	alias ls='ls -lc --color=auto 			   --no-group --human-readable --file-type'
+	alias la='ls -lc --color=auto --almost-all --no-group --human-readable --file-type'
 
 else 
 	# Darwin, OSX:
@@ -31,9 +25,7 @@ alias o='open'
 
 
 
-
-
 # print out a fortune if it's anywhere in the path
-if [ -f `which fortune` ]; then
+if [ $+commands[fortune] ]; then
 	fortune -a
 fi
