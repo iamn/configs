@@ -2,27 +2,26 @@
 # Set up the Environment
 # -----------------------------------------------
 
-EDITOR=vim
-PAGER=less
-FIGNORE='.o:.out:~'
 
-#DISPLAY=:0.0
-#DISPLAY=$REMOTEHOST:0.0
-#DISPLAY=128.208.15.7:0.0
+#export DISPLAY=$REMOTEHOST:0.0
+export EDITOR=vim
+export PAGER=less
+export FIGNORE='.o:.out:~'
 
 MAIL=/dev/null			# i use imap, so local mail is usually junk
 
 
 
 path=( $path /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin )	# basic dirs
-path=( $path ~/bin )														# personal bin 
+path=( $path ~/bin )														# personal bin
+
+export PATH
 
 export HISTFILE=~/.zsh/history
 export HISTSIZE=3000
 export SAVEHIST=3000
 
 # umask 022
-export TERM EDITOR PAGER FIGNORE LS_COLORS PATH
 
 
 
@@ -36,17 +35,33 @@ autoload -U colors
 
 # root prompt
 #PROMPT="%B%(?..[%?] )%b%n@%U%m%u> "
+#PROMPT=$(echo '%{\e[1;31m%}%~%# %{\e[0m%}')
 PROMPT="%K{magenta}%n@%m%k %# %b%f%k"
+
+#RPROMPT=$(print '%{\e[1;32m%}%n@%m%{\e[0m%}')
 RPROMPT="%F{green}%~%f"
+
+# window title for putty/xterm & screen
+precmd()
+{
+	case $TERM in
+		xterm*)
+			echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD/$HOME/~}\007"
+			;;
+		screen)
+			echo -ne "\033_${USER}@${HOST%%.*}:${PWD/$HOME/~}\033\\"
+			;;
+	esac
+}
+
 
 
 # -----------------------------------------------
 # Load zsh modules
 # -----------------------------------------------
 
-# compinit initializes various advanced completions for zsh
-#autoload -U compinit && compinit 
-autoload compinit
+. ~/.zsh/completion.defs
+
 # zmv is a batch file rename tool; e.g. zmv '(*).text' '$1.txt'
 autoload zmv
 
@@ -67,15 +82,13 @@ setopt \
 	LONG_LIST_JOBS \
 	PUSHD_SILENT \
 	zle \
-	auto_pushd 
-#	complete_aliases \
+	auto_pushd \
+	complete_aliases
 
 # -----------------------------------------------
 # Shell Aliases
 # -----------------------------------------------
 source ~/.zsh/alias.zsh
-
-#source ~/.zsh/zkbd.zsh
 
 # -----------------------------------------------
 #  User-defined Functions
@@ -85,6 +98,10 @@ source ~/.zsh/alias.zsh
 #  END
 # -----------------------------------------------
 
+
+bindkey -v
+bindkey '\e[3~' delete-char
+bindkey '^R' history-incremental-search-backward
 
 #bindkey "[A" history-beginning-search-backward
 #bindkey "[B" history-beginning-search-forward
@@ -102,28 +119,19 @@ bindkey "[4~" end-of-line
 
 
 
-################## COLORISE
-# GNU Colors
-#[ -f ~/.dircolors ] && [ $+commands[dircolors] ] && eval $(dircolors ~/.dircolors) 
-
 
 
 # -----------------------------------------------
 # Site-specific scripts
 # -----------------------------------------------
 
+OS=${OSTYPE%%[0-9.]*}
 
-if [ $TG_HOME ]; then
-	source ~/.zsh/local_teragrid.zsh
-elif [[ $OS == "darwin" ]]; then
-	source ~/.zsh/local_xgrid.zsh
+if [[ -f ~/.zsh/local/${OS}.zsh ]]; then
+	source ~/.zsh/local/${OS}.zsh
 fi
 
 
-if [[ $OS == "darwin" ]]; then
-	source ~/.zsh/local/darwin.zsh
-elif [[ $OS == "linux" ]]; then
-	source ~/.zsh/local/linux.zsh
-elif [[ $OS == "Windows_NT" ]]; then
-	source ~/.zsh/local/cygwin.zsh
-fi
+################## COLORISE
+# GNU Colors
+#[ -f ~/.dircolors ] && [ $+commands[dircolors] ] && eval $(dircolors ~/.dircolors)
