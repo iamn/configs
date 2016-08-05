@@ -70,8 +70,10 @@ if &encoding == "utf-8"
 else
 	set showbreak="+"
 	set listchars=eol:$,trail:-,tab:\|\ ,extends:>,precedes:<,conceal:+
-
+	set t_Co=64
 endif
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " If possible, try to use a narrow number column.
 if v:version >= 700
@@ -83,16 +85,17 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
-
 set nocompatible		" don't bother staying compatible w/vi
 filetype indent plugin on	" enable loading the indent file for specific file types with: >
 
 
 set nobackup			" DON'T keep a backup file
-set ruler			    " show the cursor position all the time
+set ruler				" show the cursor position all the time
 set showmode
 
 set linebreak
+set tabstop=4
+set shiftwidth=4		" 4 characters for indenting
 
 set backspace=2			" I want to backspace across the lines
 set visualbell			" no more beeping
@@ -180,6 +183,7 @@ set incsearch			" show the `best match so far' as search strings are typed; aka 
 " assume the /g flag on :s substitutions to replace all matches in a line:
 "set gdefault
 
+set hlsearch			" highlight search matches
 set showmatch			" showmatch: Show the matching bracket for the last ')'?
 set matchpairs+=<:>
 
