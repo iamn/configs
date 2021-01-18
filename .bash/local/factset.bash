@@ -1,4 +1,3 @@
-export P4EDITOR=$EDITOR
 export P4PORT=scm.factset.com:1666
 export P4DIFF='vimdiff '
 
@@ -12,7 +11,6 @@ export build="/home/dev/fonix/online/build/src"
 #
 # Add jake's bin files:
 #
-export PATH="$PATH:~/bin/"
 export MANPATH="$MANPATH:~/local/man:~/local/share/man"
 
 
@@ -21,12 +19,6 @@ export MANPATH="$MANPATH:~/local/man:~/local/share/man"
 #
 
 
-##### X11 stuff:
-# fdsw is retarded and needs to have its DISPLAY variable explictly set
-# so check if we're in fdsw and set DISPLAY:
-if [ -n "${REMOTEHOST}" ]; then
-  export DISPLAY=nimennovpc.pc.factset.com:0.0
-fi
 
 ################################################################################
 # Add FDB & FCD utilities:
@@ -45,7 +37,6 @@ alias fdswhich="ruby ~lcapaldo/fdswhich.rb"
 alias perf="p4"
 alias type="cat"
 alias del="rm -i"
-alias lo="exit"
 
 
 alias fqlf="fql_definition"
@@ -78,5 +69,4 @@ alias p4diff='P4DIFF=colordiff p4 diff'
 
 unalias p4    # take the training wheels off --- no p4fds.pl!
 
-alias quota="quota --human-readable --quiet-refuse"
 alias lunch_vote="~sjaffe/tools/lunch/vote_for_lunch"

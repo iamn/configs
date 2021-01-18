@@ -4,7 +4,6 @@
 
 
 #export DISPLAY=$REMOTEHOST:0.0
-export EDITOR=vim
 export PAGER=less
 export FIGNORE='.o:.out:~'
 
@@ -12,13 +11,10 @@ MAIL=/dev/null			# i use imap, so local mail is usually junk
 
 
 
-path=( $path /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin )	# basic dirs
-path=( $path ~/bin )														# personal bin
-
+path=( /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin $path )	# basic dirs
 export PATH
 
 export HISTFILE=~/.zsh/history
-export HISTSIZE=3000
 export SAVEHIST=3000
 
 # umask 022
@@ -125,7 +121,7 @@ bindkey "[4~" end-of-line
 # Site-specific scripts
 # -----------------------------------------------
 
-OS=${OSTYPE%%[0-9.]*}
+OS=${OSTYPE%%[0-9.]*}		# strip away digits (version)
 
 if [[ -f ~/.zsh/local/${OS}.zsh ]]; then
 	source ~/.zsh/local/${OS}.zsh
