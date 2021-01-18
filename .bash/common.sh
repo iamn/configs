@@ -1,19 +1,10 @@
 
-export EDITOR=`which vim`
 export HISTCONTROL=ignoreboth:erasedups
 export HISTFILE=~/.bash/history
 export HISTFILESIZE=2000
 export HISTIGNORE="&:ls:l:[bf]g:exit:history"
-export HISTSIZE=8500
 
 export LESS="isR"
-
-os=`uname -s`
-if [[ ${os} == "Linux" ]] ; then
-    export LANG='en_US.utf8'
-elif [[ ${os} == "Darwin" ]] ; then
-    export LANG='en_US.UTF-8'
-fi
 
 
 # no bells
@@ -67,11 +58,6 @@ if [[ -f ${HOME}/.bash/colors.sh ]] ; then
   . ${HOME}/.bash/colors.sh
 fi
 
-
-#ssh() {
-#    set "$*"
-#    command ssh "$@"
-#}
 
 
 # correct minor spelling errors in cd
