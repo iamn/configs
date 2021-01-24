@@ -1,1 +1,3 @@
-.profile
+emulate sh
+. .profile
+emulate zsh
