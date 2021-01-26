@@ -15,7 +15,7 @@ alias cdp=pushd
 # make ls print human readable sizes and append a character to identify items
 OS="${OSTYPE%%[0-9.]*}"
 case "${OS}" in
-	(linux-gnu|cygwin))
+	@(linux-gnu|cygwin))
 		lsopts=' --human-readable --file-type -l --almost-all '
 		lsopts+=' --color=auto '	# color
 		;;
