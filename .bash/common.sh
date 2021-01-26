@@ -1,4 +1,3 @@
-
 export HISTCONTROL=ignoreboth:erasedups
 export HISTFILE=~/.bash/history
 export HISTFILESIZE=2000
@@ -44,12 +43,16 @@ shopt -s nullglob
 shopt -s no_empty_cmd_completion
 
 
+#
+# hash the hostname to get a colorful prompt.  may it help avoid mistakes.
+#
+host_color="\[\e[38;5;$((16 + $(hostname | cksum | cut -c2-4) % $(tput colors) ))m\]";
 
-if [[ $TERM =~ '256color' ]]; then
-   host_color="\[\e[38;5;$((16 + $(hostname | cksum | cut -c2-4) % 216))m\]";
-else
-   host_color="\[\e[0;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]";
-fi
+# original line, in case need to rewind:
+# host_color="\[\e[38;5;$((16 + $(hostname | cksum | cut -c2-4) % 216))m\]";
+# 
+# OR, a more cutdown version for 8-bit display:
+#   host_color="\[\e[0;$((31 + $(hostname | cksum | cut -c1-3) % 6))m\]";
 
 export PS1="\[\e[0;32m\]\u@${host_color}\h\[\e[0;32m\] \w \[\e[1;34m\]$\[\e[0m\] "
 
