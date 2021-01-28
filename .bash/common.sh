@@ -110,7 +110,3 @@ shopt -s no_empty_cmd_completion
 if [[ -f ${HOME}/.bash/alias.sh ]] ; then
   . ${HOME}/.bash/alias.sh;
 fi
-
-if [[ -f ${HOME}/.bash/local/factset.bash ]] ; then
-  . ${HOME}/.bash/local/factset.bash
-fi

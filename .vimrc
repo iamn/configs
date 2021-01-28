@@ -16,34 +16,10 @@ if has("unix")
 	set t_Co=256
 	set term=xterm-256color
 
-	if !empty( $FDSENV )
-		source ~/.vim/local/factset.vim 	" load FactSet-specific files:
-	endif
-
-
 elseif has('mac')
 	"set t_Co=256			" terminal can support lots of colors
 	colorscheme ir_black
 	"set term=builtin_ansi
-
-elseif has("vms")
-	set nobackup	      " does not create *.*_ backup files
-	set nowritebackup   " does not have any purpose on VMS.  It's the default.
-
-	set t_Co=64
-
-	" VMS allows '$' in C, so make sure that doesn't mess up our code:
-	autocmd FileType c,cpp,cxx	set iskeyword+=$
-
-
-	" map opening prev/next version of the current file:
-	map <C-n> <ESC>:call VersionNext()<Return>
-	map <C-p> <ESC>:call VersionPrev()<Return>
-
-
-	if !empty( $FDS_TABLE_NUMBER" )
-		source ~/_vim/local/factset.vim 	" load FactSet-specific files:
-	endif
 
 endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
