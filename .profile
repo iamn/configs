@@ -15,7 +15,7 @@ alias cdp=pushd
 # make ls print human readable sizes and append a character to identify items
 OS="${OSTYPE%%[0-9.]*}"
 case "${OS}" in
-	(linux-gnu|cygwin))
+	@(linux-gnu|cygwin))
 		lsopts=' --human-readable --file-type -l --almost-all '
 		lsopts+=' --color=auto '	# color
 		;;
@@ -75,3 +75,11 @@ alias scp='noglob scp'				# i want to be able to use wildcards in scp!
 alias ccp='cpio --pass-through --preserve-modification-time --make-directories --verbose'
 alias strip_color='sed -r "s/\x1B\[([0-9]{1,2}(;[0-9]{1,2})?)?[m|K]//g"'
 alias glog="git log --format='%Cgreen%h%Creset %C(cyan)%an%Creset - %s' --graph"
+
+
+
+#-----------------------------------------------------------------------------------------
+# FOOTER:    Finally, load our configs if in weird locations
+#-----------------------------------------------------------------------------------------
+[[ "$SHELL" == */bash 	]] && source .bash/bashrc
+[[ "$SHELL" == */zsh	]] && source .zsh/zshrc
